@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.Account;
 import model.bean.Tindang;
 import model.bo.CheckBO;
 
@@ -45,17 +46,17 @@ public class DA_checktrangcanhan extends HttpServlet {
 		String chucnangqtv = request.getParameter("chucnangqtv");
 		String thongtincn = request.getParameter("thongtincn");
 		String thaydoimatkhau = request.getParameter("thaydoimatkhau");
-		String quanlytindang = request.getParameter("quanlytindang");
-		String dangtin = request.getParameter("dangtin");
-		String tinchuadang = request.getParameter("quanlytinchuadang");
 		
+		String dangtin = request.getParameter("dangtin");
+		//String tinchuadang = request.getParameter("quanlytinchuadang");
+		String dangxuat = request.getParameter("dangxuat");
 				
 		if(null!=chucnangqtv)
 		{
 			HttpSession session1 = request.getSession();
 			
-			System.out.print((String)session1.getAttribute("quyen"));
-			if((String)session1.getAttribute("quyen")=="admin")
+			System.out.print((String)session1.getAttribute("role"));
+			if("admin".equals((String)session1.getAttribute("role")))
 			{
 			response.sendRedirect("DA_chucnangquantrivien.jsp");
 			}
@@ -63,9 +64,24 @@ public class DA_checktrangcanhan extends HttpServlet {
 				response.sendRedirect("DA_trangcanhan.jsp");
 			}
 		}
+		if(null!=dangxuat)
+		{
+			HttpSession session1 = request.getSession();
+			session1.invalidate();
+			response.sendRedirect("ShowTrangChu");
+		}
 		else if(null!=thongtincn)
 		{
-			response.sendRedirect("TESTTTTT.jsp");
+HttpSession session1 = request.getSession();
+			
+			System.out.print((String)session1.getAttribute("idaccount"));
+			String id=(String)session1.getAttribute("idaccount");
+			CheckBO checkBO = new CheckBO();
+			ArrayList<Account> arrAccount = new ArrayList <Account>();
+			arrAccount = checkBO.getAccount(id);
+			request.setAttribute("arrAccount", arrAccount);
+			RequestDispatcher rd = request.getRequestDispatcher("showthongtincanhan.jsp");
+			rd.forward(request, response);
 			
 		}
 		else if(null!= thaydoimatkhau )
@@ -73,18 +89,7 @@ public class DA_checktrangcanhan extends HttpServlet {
 			response.sendRedirect("doimatkhau.jsp");
 
 		}
-		else if(null != quanlytindang)
-		{
-			HttpSession session = request.getSession();
-			
-			
-			CheckBO checkBO = new CheckBO();
-			ArrayList<Tindang> arrTDD = new ArrayList<Tindang>();
-			arrTDD = checkBO.getTindadang((String)session.getAttribute("userName"));
-			request.setAttribute("arrTDD", arrTDD);
-			RequestDispatcher rd = request.getRequestDispatcher("DA_quanlytindadang.jsp");
-			rd.forward(request, response);
-		}
+		
 		
 		else if(null != dangtin)
 		{

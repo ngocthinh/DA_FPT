@@ -2,6 +2,7 @@ package model.bo;
 
 import java.util.ArrayList;
 
+import model.bean.Account;
 import model.bean.QuangCao;
 import model.bean.Tindang;
 import model.bean.Vacxin;
@@ -34,6 +35,9 @@ public class CheckBO {
 	}
 	public ArrayList<Tindang> getTindadang( String name) {
 		return checDAO.getTindadang(name);
+	}
+	public ArrayList<Account> getAccount(String id) {
+		return checDAO.getAccount(id);
 	}
 	public boolean ThemQuangcao(String ten, String ngay, String han, String gia, String image) {
 		return checDAO.ThemQuangCao(ten, ngay, han, gia,image);

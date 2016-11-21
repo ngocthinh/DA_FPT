@@ -2,11 +2,26 @@ package model.bean;
 
 public class Tindang {
     String id;
+    String idCategory;
+	public String getIdCategory() {
+		return idCategory;
+	}
+	public void setIdCategory(String idCategory) {
+		this.idCategory = idCategory;
+	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	boolean idoranization;
+	
+	public boolean isIdoranization() {
+		return idoranization;
+	}
+	public void setIdoranization(boolean idoranization) {
+		this.idoranization = idoranization;
 	}
 	String username;
 	String title;

@@ -93,7 +93,7 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="#">Trang cá nhân</a></p>
+      <p><a href="DA_checkchucnangdangtin">Đăng tin</a></p>
    
     </div>
     <div class="col-sm-8 text-left">

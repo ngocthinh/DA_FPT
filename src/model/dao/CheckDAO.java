@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.bean.Account;
 import model.bean.QuangCao;
 import model.bean.Tindang;
 import model.bean.Vacxin;
@@ -206,10 +207,11 @@ public class CheckDAO extends BaseDAO {
 
 	public boolean isThemTindang(Tindang tindang) {
 		getConnection();
-		String sql = "insert into DANGTIN(chuyenmuc,vung,banla,bandangtin,tieuderao,noidung,dienthoai,giatien,trangthai,thanhvien) values("
-				+ "'"
-			
-				+ ")";
+		int idor=0,idsa=0;
+		if (tindang.isIdoranization()) idor=1;
+		if (tindang.isSalebuy()) idsa=1;
+		String sql = "INSERT INTO [DA_CNPM].[dbo].[News] ([idAccount],[title],[content],[idCategory],[organization],[saleBuy],[cost],[photo],[address]) values("
+				+ "'"+tindang.getUsername()+"',N'"+tindang.getTitle()+"',N'"+tindang.getContent()+"',N'"+tindang.getIdCategory()+"',"+idor+","+idsa+",'"+tindang.getCost()+"',N'"+tindang.getLinkImage()+"',N'"+tindang.getAddress()+"')";
 		return isExcute(sql);
 	}
 
@@ -294,5 +296,38 @@ public class CheckDAO extends BaseDAO {
 			return null;
 		}
 		
+	}
+	public ArrayList<Account> getAccount(String id) {
+		ArrayList<Account> arrTDD = new ArrayList<Account>();
+		String sql="";
+		if("".equals(id))
+		 sql = "select * from dbo.Account";
+		else
+			sql = "select * from dbo.Account where idAccount= "+id;
+        boolean role=true;
+		try {
+			getConnection();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Account ac = new Account();
+				ac.setIdAccount(rs.getString(1));
+				ac.setUsername(rs.getString(2));
+				
+				ac.setPhoneNumber(rs.getString(4));
+				ac.setEmail(rs.getString(5));
+				role = (rs.getInt(6) == 1);
+				ac.setRole(role);
+				arrTDD.add(ac);
+				System.out.println("---------------------"+role);
+				
+			}
+			closeConnection();
+			return arrTDD;
+		} catch (SQLException e) {
+			System.out.println("hello sai roi kia");
+			closeConnection();
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

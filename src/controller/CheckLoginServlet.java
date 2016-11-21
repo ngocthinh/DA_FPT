@@ -64,11 +64,13 @@ public class CheckLoginServlet extends HttpServlet {
 				
 				Connection conn = baseDAO.getConnection();
 				Statement st= conn.createStatement();
-				String sql="SELECT role FROM Account where username = '"+userName+"'";
+				String sql="SELECT role,idAccount FROM Account where username = '"+userName+"'";
 				ResultSet rs = st.executeQuery(sql);
+				
 				while(rs.next())
 				{
-					if(admin.equals(rs.getString("role")))
+					session.setAttribute("idaccount", rs.getString(2));
+					if("1".equals(rs.getString(1)))
 					{
 						session1.setAttribute("role", admin);
 						

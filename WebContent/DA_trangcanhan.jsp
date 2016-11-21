@@ -54,6 +54,7 @@
 		<jsp:include page="header.jsp"></jsp:include>
 		<form action="DA_checktrangcanhan" method="post">
 			<div class="title" align="center">
+				<div class="titlei"><input style="color: blue; background: orange;" type="submit" name="dangxuat" value="Đăng xuất"></div>
 				<div class="titlei"><input style="color: blue; background: orange;" type="submit" name="dangtin" value="Đăng tin"></div>
 			</div>
 			</form>
@@ -82,7 +83,7 @@
 
 					</tr>
 					<tr>
-						<td><input style="width: 300px;" type="submit" name="quanlytindang" value="Quản lí tin đã đăng"></td>
+					
 
 					</tr>			
 							

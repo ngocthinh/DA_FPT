@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import model.bean.Account;
 import model.bean.QuangCao;
 import model.bean.Tindang;
 import model.bo.CheckBO;
@@ -43,6 +45,7 @@ public class DA_checkchucnangquantrivien extends HttpServlet {
 			String quanlythanhvien = request.getParameter("quanlythanhvien");
 			String quanlythongtinkhac = request.getParameter("quanlythongtinkhac");
 			String thongke = request.getParameter("thongke");
+			String quanlychuatindang = request.getParameter("quanlychuatindang");
 			String quaylai = request.getParameter("quaylai");
 			
 			
@@ -59,7 +62,12 @@ public class DA_checkchucnangquantrivien extends HttpServlet {
 			}
 			else if(null!=quanlythanhvien)
 			{
-				
+				CheckBO checkBO = new CheckBO();
+				ArrayList<Account> arrAccount = new ArrayList <Account>();
+				arrAccount = checkBO.getAccount("");
+				request.setAttribute("arrAccount", arrAccount);
+				RequestDispatcher rd = request.getRequestDispatcher("showquanlythanhvien.jsp");
+				rd.forward(request, response);
 			}
 			else if(null!= quanlythongtinkhac )
 			{
@@ -70,6 +78,20 @@ public class DA_checkchucnangquantrivien extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("QuangCao.jsp");
 				rd.forward(request, response);
 			}
+			
+			else if(null != quanlychuatindang)
+			{
+				HttpSession session = request.getSession();
+				
+				
+				CheckBO checkBO = new CheckBO();
+				ArrayList<Tindang> arrTDD = new ArrayList<Tindang>();
+				arrTDD = checkBO.getTindadang((String)session.getAttribute("userName"));
+				request.setAttribute("arrTDD", arrTDD);
+				RequestDispatcher rd = request.getRequestDispatcher("DA_quanlytindadang.jsp");
+				rd.forward(request, response);
+			}
+			
 			else if(null != thongke)
 			{
 			}

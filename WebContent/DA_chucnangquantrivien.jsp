@@ -73,10 +73,13 @@
 
 					</tr>
 					<tr>
+						<td><input style="width: 300px;" type="submit" name="quanlychuatindang" value="Quản lí tin đã đăng"></td>
+					</tr>
+					<tr>
 						<td><input style="width: 300px;" type="submit" name="quanlythanhvien" value="Quản lý thành viên"></td>
 
 					</tr>
-					
+					<!-- 
 					<tr>
 						<td><input style="width: 300px;"  type="submit" name="quanlythongtinkhac" value="Quản lý thông tin  khác"></td>
 
@@ -84,7 +87,9 @@
 					<tr>
 						<td><input style="width: 300px;"  type="submit" name="thongke" value="Thống kê"></td>
 
-					</tr>		
+					</tr>	
+					 -->	
+					
 				<tr>
 				<td><input class="sub" type="submit" name="quaylai" value="Quay lại" > </td></tr>
 				</table>

@@ -1,29 +1,24 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import model.bean.Tindang;
-import model.bo.CheckBO;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ShowTrangChu
+ * Servlet implementation class DA_checkchucnangdangtin
  */
-@WebServlet("/ShowTrangChu")
-public class ShowTrangChu extends HttpServlet {
+@WebServlet("/DA_checkchucnangdangtin")
+public class DA_checkchucnangdangtin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowTrangChu() {
+    public DA_checkchucnangdangtin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +27,7 @@ public class ShowTrangChu extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
@@ -39,17 +35,10 @@ public class ShowTrangChu extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/plain; charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		
-		System.out.println("Bài giảng hay nhất tôi");
-		CheckBO checkBO = new CheckBO();
-		ArrayList<Tindang> arrTDD = new ArrayList<Tindang>();
-		arrTDD = checkBO.getTindadang((String)request.getAttribute("userName"));
-		request.setAttribute("arrTDD", arrTDD);
-		RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
-		rd.forward(request, response);
+		HttpSession session = request.getSession();
+		String idaccount = (String) session.getAttribute("idaccount");
+		if(idaccount!=null) response.sendRedirect("DA_dangtin.jsp");
+		else response.sendRedirect("dangnhap.jsp");
 	}
 
 }

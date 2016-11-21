@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -135,240 +135,158 @@
 </script>
 <body>
 
-<% String a =(String)session.getAttribute("userName");%>
+	<% String a =(String)session.getAttribute("userName");%>
 	<div id="main">
 		<jsp:include page="header.jsp"></jsp:include>
 		<div class="head-link" align="center">
-				<ul>
-					<li><a href="ShowTrangChu?">Trang chủ</a></li>
-					<li><a href="DA_showdangtin?">>Đăng tin</a></li>
-					
-				</ul>
-		</div> 
+			<ul>
+				<li><a href="ShowTrangChu?">Trang chủ</a></li>
+				<li><a href="DA_showdangtin?">>Đăng tin</a></li>
+
+			</ul>
+		</div>
 		<div class="content" align="center">
 			<h2>Đăng tin rao vặt</h2>
 			<form action="DA_checkdangtin" method="post" name="dangtin"
-				onsubmit="return KiemTra();">
+				onsubmit="return KiemTra();" enctype="multipart/form-data"  accept-charset="UTF-8">
 				<table class="tt">
 					<tr>
-							<td>Chuyên mục<b class="red">*</b> </td>
-							<td><select name="chuyenmuc" class="text" id="tg">
-								
-									<option value="cmuc" selected="selected">«Chọn danh mục»</option>
-	
-		<option value="xeco" style="background-color:#dcdcc3;font-weight:bold;" disabled="disabled" >
-			
-				-- Xe cộ --
-	        	
-		</option> 
-	
-		<option value="xe may">
-			Xe máy
-			
-		</option> 
-	
-		<option value="o to">
-			Ô tô
-			
-		</option> 
-	
-		<option value="xe dap">
-			Xe đạp
-			
-		</option> 
-	
-		<option value="xe tai">
-			Xe tải
-			
-		</option> 
-	
-		<option value="xe khac">
-			Khác
-			
-		</option> 
-	
-		<option value="batdongsan" style="background-color:#dcdcc3;font-weight:bold;" disabled="disabled">
-			
-				-- Bất động sản --
-	        	
-		</option> 
-	
-		<option value="can ho_chung cu">
-			Căn hộ/Chung cư
-			
-		</option> 
-	
-		<option value="nha o">
-			Nhà ở
-			
-		</option> 
-	
-		<option value="dat">
-			Đất
-			
-		</option> 
-	
-		<option value="van phong">
-			Văn phòng, Mặt bằng kinh doanh
-			
-		</option> 
-	
-		<option value="phong tro">
-			Phòng trọ
-			
-		</option> 
-	
-		<option value="dodientu" style="background-color:#dcdcc3;font-weight:bold;" disabled="disabled">
-			
-				-- Đồ điện tử --
-	        	
-		</option> 
-	
-		<option value="dt di dong">
-			Điện thoại di động
-			
-		</option> 
-	
-		<option value="may tính bang">
-			Máy tính bảng
-			
-		</option> 
-	
-		<option value="may tinh_laptop">
-			Máy tính, Laptop
-			
-		</option> 
-	
-		<option value="may anh">
-			Máy ảnh, Máy quay
-			
-		</option> 
-	
-		<option value="tivi">
-			Tivi, Loa, Amply, Máy nghe nhạc
-			
-		</option> 
-	
-		<option value="phu kien">
-			Phụ kiện, Linh kiện
-			
-		</option> 
-	
-		
-		<option value="vat dung gia dinh" style="background-color:#dcdcc3;font-weight:bold;" disabled="disabled">
-			
-				-- Vật dụng gia đình --
-	        	
-		</option> 
-	
-		<option value="tu lanh">
-			Tủ lạnh, Máy lạnh, Máy giặt
-			
-		</option> 
-	
-		<option value="cay canh">
-			Nội ngoại thất, Cây cảnh
-			
-		</option> 
-	
-		<option value="do gia dung">
-			Đồ gia dụng gia đình khác
-			
-		</option> 
-			
-	
-		<option value="icacloaikhac" style="background-color:#dcdcc3;font-weight:bold;" disabled="disabled">
-			
-				-- Các loại khác --
-	        	
-		</option> 
-	
-		<option value="cac loai khac">
-			Các loại khác
-			
-		</option> 
-	
-</select>  <span id="loi-chuyenmuc" class="loi"></span></td></tr>
-<tr>
+						<td>Chuyên mục<b class="red">*</b>
+						</td>
+						<td><select name="chuyenmuc" class="text" id="tg">
 
-		<td>Vùng<b class="red">*</b> </td>
-							<td><select style="width: 300px" name="vung" class="text" id="tg"
-								onchange="myFunction()">
-									<option value="ivung" selected="selected">«Chọn vùng»</option>
-	        	
-		
-	
-		<option value="hai chau">
-			Quận Hải Châu
-			
-		</option> 
-	
-		<option value="thanh khe">
-			Quận Thanh Khê
-			
-		</option> 
-	
-		<option value="son tra">
-			Quận Sơn Trà
-			
-		</option> 
-	
-		<option value="ngu hanh son">
-			Quận Ngũ Hành Sơn
-			
-		</option> 
-	
-		<option value="lien chieu">
-			QuậnLiên Chiểu
-			
-		</option> 
-		
-		<option value="cam le">
-			Quận Cẩm Lệ
-			
-		</option> 
-	
-</select> <span id="loi-vung" class="loi"></span> </td></tr>
+								<option value="cmuc" selected="selected">«Chọn danh
+									mục»</option>
+
+								<option value="Xe cộ"
+									style="background-color: #dcdcc3; font-weight: bold;"
+									disabled="disabled">-- Xe cộ --</option>
+
+								<option value="Xe máy">Xe máy</option>
+
+								<option value="Ô tô">Ô tô</option>
+
+								<option value="Xe đạp">Xe đạp</option>
+
+								<option value="Xe tải">Xe tải</option>
+
+								<option value="Khác">Khác</option>
+
+								<option value="batdongsan"
+									style="background-color: #dcdcc3; font-weight: bold;"
+									disabled="disabled">-- Bất động sản --</option>
+
+								<option value="Căn hộ/Chung cư">Căn hộ/Chung cư</option>
+
+								<option value="Nhà ở">Nhà ở</option>
+
+								<option value="Đất">Đất</option>
+
+								<option value="Văn phòng, Mặt bằng kinh
+									doanh">Văn phòng, Mặt bằng kinh
+									doanh</option>
+
+								<option value="Phòng trọ">Phòng trọ</option>
+
+								<option value="Đồ điện tử"
+									style="background-color: #dcdcc3; font-weight: bold;"
+									disabled="disabled">-- Đồ điện tử --</option>
+
+								<option value="Điện thoại di động">Điện thoại di động</option>
+
+								<option value="Máy tính bảng">Máy tính bảng</option>
+
+								<option value="Máy tính, Laptop">Máy tính, Laptop</option>
+
+								<option value="Máy ảnh, Máy quay">Máy ảnh, Máy quay</option>
+
+								<option value="Tivi, Loa, Amply,...">Tivi, Loa, Amply, Máy nghe nhạc</option>
+
+								<option value="Phụ kiện, Linh kiện">Phụ kiện, Linh kiện</option>
 
 
-							
-				<tr>
-				    		<td> Bạn là <b class="red" >*</b>  </td>
-						    <td>
-								<input name="banla" type="radio" value="Ca nhan" checked="checked" />Cá nhân
-								<input name="banla" type="radio" value="Cong ty" />Công ty								
-						    </td>
-				</tr>	
-				<tr>
-						    <td> Bạn đăng tin <b class="red" >*</b>  </td>
-						    <td>
-								<input name="bdangtin" type="radio" value="can ban" checked="checked" />Cần bán
-								<input name="bdangtin" type="radio" value="can mua" />Cần mua								
-						    </td>
-				</tr>					  
-				<tr>
-						<td>Tiêu đề rao<b class="red" >*</b> </td>
-						<td><input style="width: 300px" type="text" name="tieude" class="text"> <span
-							id="loi-tieude" class="loi"></span></td>
+								<option value="vat dung gia dinh"
+									style="background-color: #dcdcc3; font-weight: bold;"
+									disabled="disabled">-- Vật dụng gia đình --</option>
+
+								<option value="Tủ lạnh, Máy lạnh,...">Tủ lạnh, Máy lạnh, Máy giặt</option>
+
+								<option value="Nội ngoại thất, Cây cảnh">Nội ngoại thất, Cây cảnh</option>
+
+								<option value="Đồ gia dụng gia đình khác">Đồ gia dụng gia đình khác</option>
+
+
+								<option value="icacloaikhac"
+									style="background-color: #dcdcc3; font-weight: bold;"
+									disabled="disabled">-- Các loại khác --</option>
+
+								<option value="Các loại khác">Các loại khác</option>
+
+						</select> <span id="loi-chuyenmuc" class="loi"></span></td>
 					</tr>
 					<tr>
-					
-						<td>Nội dung<b class="red" >*</b></td>
-						<td><textarea name="noidung" rows="5" cols="39"  placeholder="Đây là vùng nhập text" maxlength="20"></textarea>
-						<span id="loi-noidung" class="loi" ></span> </td>
+
+						<td>Vùng<b class="red">*</b>
+						</td>
+						<td><select style="width: 300px" name="vung" class="text"
+							id="tg" onchange="myFunction()">
+								<option value="ivung" selected="selected">«Chọn vùng»</option>
+
+
+
+								<option value="Quận hải châu">Quận Hải Châu</option>
+
+								<option value="Quận Thanh Khê">Quận Thanh Khê</option>
+
+								<option value="Quận Sơn Trà">Quận Sơn Trà</option>
+
+								<option value="Quận Ngũ Hành Sơn">Quận Ngũ Hành Sơn</option>
+
+								<option value="QuậnLiên Chiểu">QuậnLiên Chiểu</option>
+
+								<option value="Quận Cẩm Lệ">Quận Cẩm Lệ</option>
+
+						</select> <span id="loi-vung" class="loi"></span></td>
+					</tr>
+
+
+
+					<tr>
+						<td>Bạn là <b class="red">*</b>
+						</td>
+						<td><input name="banla" type="radio" value="Ca nhan"
+							checked="checked" />Cá nhân <input name="banla" type="radio"
+							value="Cong ty" />Công ty</td>
+					</tr>
+					<tr>
+						<td>Bạn đăng tin <b class="red">*</b>
+						</td>
+						<td><input name="bdangtin" type="radio" value="can ban"
+							checked="checked" />Cần bán <input name="bdangtin" type="radio"
+							value="can mua" />Cần mua</td>
+					</tr>
+					<tr>
+						<td>Tiêu đề rao<b class="red">*</b>
+						</td>
+						<td><input style="width: 300px" type="text" name="tieude"
+							class="text"> <span id="loi-tieude" class="loi"></span></td>
+					</tr>
+					<tr>
+
+						<td>Nội dung<b class="red">*</b></td>
+						<td><textarea name="noidung" rows="5" cols="39"
+								placeholder="Đây là vùng nhập text" maxlength="254"></textarea> <span
+							id="loi-noidung" class="loi"></span></td>
 					</tr>
 
 					<tr>
-					
-						<td>Điện thoại<b class="red" >*</b></td>
-						<td><input style="width: 300px" type="text" name="sdt" class="text" > <span
-							id="loi-sdt" class="loi"></span></td>
+						<td>Giá tiền<b class="red">*</b></td>
+						<td><input style="width: 300px" type="text" name="gia"
+							class="text">VND <span id="loi-gia" class="loi"></span></td>
 					</tr>
-
 					<tr>
-						<td>Giá tiền<b class="red" >*</b></td>
-						<td><input style="width: 300px" type="text" name="gia" class="text">VND <span
-							id="loi-gia" class="loi"></span></td>
+						<td>Ảnh<b class="red">*</b></td>
+						<td><input type="file" name="fileToUpload" id="fileToUpload"></td>
 					</tr>
 				</table>
 				<input type="submit" value="Đăng tin" class="sub">
